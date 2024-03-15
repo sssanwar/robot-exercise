@@ -8,8 +8,6 @@ export const log = (obj: any) => {
 }
 
 export const parseInputLine = (line: string) => {
-  const cleaned = line.replace(/\s/g, '').toLowerCase()
-  if (cleaned === 'exit') return undefined
-
-  return cleaned.split('').map(key => key.toUpperCase())
+  const cleaned = line.replace(/\s/g, '').toUpperCase()
+  return cleaned === 'EXIT' ? undefined : cleaned.split('')
 }
