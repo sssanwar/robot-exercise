@@ -7,9 +7,9 @@ describe('Warehouse', () => {
   new Robot('robot', warehouse, { x: 0, y: 0 })
 
   it('gets placement by position', () => {
-    const placement = warehouse.getPlacementByPosition({ x: 0, y: 0 })
-    expect(placement?.occupier.id).toEqual('robot')
-    expect(placement?.position).toEqual({ x: 0, y: 0 })
+    const placements = warehouse.getPlacementsByPosition({ x: 0, y: 0 })
+    expect(placements[0].occupier.id).toEqual('robot')
+    expect(placements[0].position).toEqual({ x: 0, y: 0 })
   })
 
   it('gets placement by ID', () => {
@@ -20,8 +20,7 @@ describe('Warehouse', () => {
 
   it('verifies for valid position', () => {
     expect(() => warehouse.validatePosition({ x: -1, y: 0 })).toThrow('Must stay within boundary!')
-    expect(() => warehouse.validatePosition({ x: 0, y: 0 })).toThrow('An existing placement exists!')
-    expect(() => warehouse.validatePosition({ x: 0, y: 0 }, false)).not.toThrow()
+    expect(() => warehouse.validatePosition({ x: 0, y: 0 })).not.toThrow()
   })
 
   it('returns correct projected position', () => {
