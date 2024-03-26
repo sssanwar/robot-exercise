@@ -35,6 +35,18 @@ class MoveWestCommand extends Command {
   }
 }
 
+class GrabCommand extends Command {
+  execute() {
+    this.robot.grab()
+  }
+}
+
+class DropCommand extends Command {
+  execute() {
+    this.robot.drop()
+  }
+}
+
 class InvalidCommand extends Command {
   execute() {
     log(`Invalid command: ${this.key}`)
@@ -52,6 +64,10 @@ export const CommandBuilder = (robot: Robot) => ({
         return new MoveSouthCommand(robot, key)
       case 'W':
         return new MoveWestCommand(robot, key)
+      case 'G':
+        return new GrabCommand(robot, key)
+      case 'D':
+        return new DropCommand(robot, key)
       default:
         return new InvalidCommand(robot, key)
     }

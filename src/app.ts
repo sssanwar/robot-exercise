@@ -1,5 +1,6 @@
 import { log } from './common/utils'
 import { CommandBuilder } from './model/command'
+import { Crate } from './model/crate'
 import { Robot } from './model/robot'
 import { Position } from './model/types'
 import { Warehouse } from './model/warehouse'
@@ -11,6 +12,10 @@ type AppProps = {
     id: string
     initialPosition: Position
   }
+  crates: {
+    id: string
+    initialPosition: Position
+  }[]
 }
 
 export class App {
@@ -22,6 +27,9 @@ export class App {
     this.#warehouse = new Warehouse(props.width, props.height)
     this.#robot = new Robot(props.robot.id, this.#warehouse, props.robot.initialPosition)
     this.#commandBuilder = CommandBuilder(this.#robot)
+
+    // Create the crates
+    props.crates.forEach(crate => new Crate(crate.id, this.#warehouse, crate.initialPosition))
   }
 
   sendCommand(key: string) {
