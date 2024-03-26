@@ -17,7 +17,12 @@ jest.mock('../src/model/command', () => ({
 jest.mock('../src/common/utils')
 
 describe('App', () => {
-  const app = new App({ width: 5, height: 5, robot: { id: 'robot', initialPosition: { x: 1, y: 1 } } })
+  const app = new App({
+    width: 5,
+    height: 5,
+    robot: { id: 'robot', initialPosition: { x: 1, y: 1 } },
+    crates: [{ id: 'crate', initialPosition: { x: 2, y: 2 } }],
+  })
 
   it('executes robot command', () => {
     app.sendCommand('N')

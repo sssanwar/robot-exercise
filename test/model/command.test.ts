@@ -30,6 +30,16 @@ describe('CommandBuilder', () => {
     expect(robot.move).toHaveBeenCalledWith({ direction: Direction.West, length: 1 })
   })
 
+  it('sends grab command ', () => {
+    commandBuilder.build('G').execute()
+    expect(robot.grab).toHaveBeenCalled()
+  })
+
+  it('sends drop command', () => {
+    commandBuilder.build('D').execute()
+    expect(robot.drop).toHaveBeenCalled()
+  })
+
   it('does not move robot when key is not recognised', () => {
     commandBuilder.build('Z').execute()
     expect(robot.move).not.toHaveBeenCalled()
